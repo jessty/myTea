@@ -1,21 +1,9 @@
 # myTea
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+> 对茶叶项目部分模块的重构
+## 现状
+原项目比较突出的问题是未实现页面的组件化；其实很多页面都用同一种结构来显示，只是展示的内容有所不同。
+## 想法
+* 利用动态路由和嵌套路由匹配，实现组件的层层拼接，形成完整的页面。
+* 对于各个页面（主要是表格区）的所特有的信息的展示，比如表头字段、操作对应的后台接口url，则通过定义一个个 __类似配置文件的js文件__ ，在路由匹配时，通过vue的路由钩子读取相应配置文件的信息，并props传递给子组件，从而实现table表头的切换和组件模板的重用。
+* 其实路由的路径结构与嵌套对象的结构很像（从vue-router的嵌套路由受到的启发），可以直接利用路由路径的结构去设计配置文件里的js嵌套对象，什么样的嵌套路径，就读取配置文件的哪部分js嵌套对象，达到统一的结构。
